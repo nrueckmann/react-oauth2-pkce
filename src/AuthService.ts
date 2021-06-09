@@ -170,10 +170,12 @@ export class AuthService<TIDToken = JWTIDToken> {
       responseType: 'code',
       redirectUri,
       codeChallenge,
-      codeChallengeMethod: 'S256'
+      codeChallengeMethod: 'S256',
+      state: 'we_do_not_use_state',
+      r: "nexttuesday-test",
     }
     // Responds with a 302 redirect
-    const url = `${provider}/authorize?${toUrlEncoded(query)}`
+    const url = `${provider}/auth?${toUrlEncoded(query)}`
     window.location.replace(url)
     return true
   }
