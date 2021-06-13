@@ -176,7 +176,10 @@ export class AuthService<TIDToken = JWTIDToken> {
     }
     // Responds with a 302 redirect
     const url = `${provider}/auth?${toUrlEncoded(query)}`
-    window.location.replace(url)
+
+    // We will do auth in a separate window
+    window.open(url)
+    // window.location.replace(url)
     return true
   }
 
@@ -277,6 +280,10 @@ export class AuthService<TIDToken = JWTIDToken> {
   restoreUri(): void {
     const uri = window.localStorage.getItem('preAuthUri')
     window.localStorage.removeItem('preAuthUri')
+
+    // auth has been done in a separate window.
+    window.close()
+
     console.log({ uri })
     if (uri !== null) {
       window.location.replace(uri)

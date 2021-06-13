@@ -280,7 +280,7 @@ var AuthService = /*#__PURE__*/function () {
       r: "nexttuesday-test"
     };
     var url = provider + "/auth?" + toUrlEncoded(query);
-    window.location.replace(url);
+    window.open(url);
     return true;
   };
 
@@ -412,6 +412,7 @@ var AuthService = /*#__PURE__*/function () {
   _proto.restoreUri = function restoreUri() {
     var uri = window.localStorage.getItem('preAuthUri');
     window.localStorage.removeItem('preAuthUri');
+    window.close();
     console.log({
       uri: uri
     });
